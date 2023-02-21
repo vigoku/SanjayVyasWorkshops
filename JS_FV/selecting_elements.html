@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=500, initial-scale=1.0">
+    <title>Selecting programatically</title>
+    <script>
+        function testSelectors() {
+            console.log(document.getElementById("main"));
+            console.log(document.getElementsByTagName("ul"));
+            console.log(document.querySelector("div>ul>li"));
+            console.log(document.getElementsByClassName("dynamic"));
+            //console.log(document.querySelectorAll("[innerHTML^='Java']"));
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <div id="main">
+        <ul>
+            <li class="static">C</li>
+            <li class="static">C++</li>
+            <li class="dynamic">Python</li>
+            <li class="static">Java</li>
+            <li class="dynamic">Javascript</li>
+        </ul>
+        <button id="submit" onclick="testSelectors();">Click to select</button>
+    </div>
+</body>
+
+</html>

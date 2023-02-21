@@ -1,0 +1,26 @@
+h3 {
+    color: teal;
+    text-align: center;
+}
+
+#root {
+    border:2px solid teal;
+    padding : 10px;
+    box-shadow: 5px 5px 5px lightgray;
+    margin : auto;
+    width: fit-content;
+}
+
+input:checked~label{
+    text-decoration: line-through;
+}
+
+li>button {
+    color:red;
+    border: none;
+    background-color: transparent;
+}
+
+ul, ol {
+    list-style: none;
+}

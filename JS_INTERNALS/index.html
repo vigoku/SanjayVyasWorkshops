@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        function longRun(ms) {
+            console.log(ms);
+            const start = new Date();
+            while (new Date - start < ms) {
+                ;
+            }
+        }
+
+        function frozen() {
+            console.log("Frozen 1");
+            longRun(document.getElementById("number").value * 1000);
+            console.log("Frozen, when you are not open.")
+        }
+
+        function notFrozen() {
+            console.log("not frozen");
+            // set time out is a function that runs in web api area, 
+            // entry is made in dictionary for timout
+            // main thread will check this and calll the function after completing any thing else
+            setTimeout(longRun, document.getElementById("number2").value * 1000, document.getElementById("number").value * 1000);
+            console.log("end of Not Frozen");
+        }
+
+        function executor (resolve){
+            resolve("done");
+        }
+        function onSuccess(result){
+            longRun(10000);
+            console.log({result})
+        }
+        function promise(){
+            const pakka = new Promise(executor);
+            console.log("Promise Made");
+            pakka.then(onSuccess)
+        }
+    //~^ the only way to multi thread using browser capability
+    function worker(){
+        const worker = new Worker("worker.js");
+        worker.postMessage(10000);
+        worker.onmessage = function (message){
+            console.log("Got mesage in main", message)
+        }
+    }
+    </script>
+
+</head>
+
+<body>
+    <input type="number" id="number">
+    <button onclick="frozen()">Frozen</button>
+
+    <br>
+    <input type="number" id="number2">
+    <button onclick="notFrozen()">Smooth</button>
+
+    <br>
+    <button onclick="promise()">Promise</button>
+    <br>
+    <button onClick="worker()"> worker </button>
+</body>
+
+</html>

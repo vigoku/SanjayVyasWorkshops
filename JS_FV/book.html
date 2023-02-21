@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div>
+        Technology                      Books
+        <ul>
+            <li>
+                Born to code in c
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        const div = document.querySelector("div");
+        console.log(`Div Contents [${div.textContent}]`);
+        console.log(`inner text [${div.innerText}]`);
+        console.log(`inner html [${div.innerHTML}]`);
+        console.log(`outerHtml [${div.outerHTML}]`);
+
+        div.textContent += "Thinking in Java";
+        //alert();
+        div.innerText += "Thinking in Java";
+        //alert();
+        div.innerHTML = "Technology           Books <ul><li>Born to code in c</li><li>Thinking in Java</li></ul>";
+        //alert();
+        div.outerHTML += "<div> Tech books       2 <ul><li>Thinking in Java</li></ul></div>"
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pg2</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+        button {
+            color: green;
+        }
+
+        .good {
+            color: blue;
+        }
+
+        .bad {
+            color: brown;
+        }
+
+        #screen {
+            color:coral;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 id="header"></h1>
+    <br>
+    <script>
+        function showMe() {
+            //const buttonElements = document.getElementsByTagName("button");
+            //const button = buttonElements[0];
+            //console.log(button);
+
+            const button = document.querySelector("#screen");
+
+            button.innerHTML = "Change";
+
+        }
+    </script>
+    <a href="index.html">Click Here to Go To Index</a>
+
+    <button id="screen" onclick="alert(screen.width);">Gimme screen size</button>
+    <button class="good" onclick="location.replace('http\://127.0.0.1:5500/index.html');"> Jump to Index </button>
+    <button class="bad" onclick="location.reload()">Page Reload</button>
+    <button onclick="alert(navigator.userAgent)"> usr agent </button>
+
+    <button id="screen" onclick="window.document.getElementById('header').innerHTML='DOM DOM BOM BOM'">Experience - Invisible
+        text</button>
+
+    <!--Inline-->
+    <button onClick="showMe();" style="background-color: aqua;">Test DOM</button>
+
+    <br>
+    <br>
+</body>
+
+</html>

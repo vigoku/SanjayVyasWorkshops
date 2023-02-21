@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        a[target="_blank"] {
+            color: blue;
+        }
+
+        [href^="http:"] {
+            color: red;
+        }
+
+        [href $="org"] {
+            color: green;
+        }
+
+        [value ~= "info"] {
+            background-color: gold;
+        }
+
+        [id *="but"] {
+            background-color: brown;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <a href="mdn.com" target="_blank">MDN</a><br>
+        <a href="http://ibm.com"> IBM </a> <br>
+        <a href="https://nodejs.org">Node</a><br>
+        <br>
+        <input value="secret info" />
+        <button id="big-submit-button">Submit</button>
+    </div>
+</body>
+
+</html>
