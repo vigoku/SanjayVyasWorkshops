@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>react in browser</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js">
+
+    </script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js">
+
+    </script>
+</head>
+
+<body>
+    <div id="mydiv"></div>
+
+    <div id="mydiv2"></div>
+</body>
+
+<script>
+    const root = ReactDOM.createRoot(document.querySelector("#mydiv"));
+    const h1 = React.createElement("h1", null, "Hello React World");
+    root.render(h1);
+
+    const root2 = ReactDOM.createRoot(document.querySelector("#mydiv2"));
+    const h2 = React.createElement("h2", null, "Hello 2nd div react world")
+    root.render(h2);
+</script>
+
+</html>
