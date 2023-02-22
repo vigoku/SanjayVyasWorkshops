@@ -41,12 +41,93 @@ class LinkedList {
         }
         console.log('-|');
     }
+
+    insertAfter(refValue, insertValue) {
+        let current = this.head;
+        while (current != null && current.value != refValue)
+            current = current.next;
+        if (current != null) {
+            const spot = new Node(insertValue);
+            spot.prev = current;
+            spot.next = current.next;
+            if (current.next != null)
+                current.next.prev = spot;
+            else //tail
+                this.tail = spot;
+            current.next = spot;
+        } else
+            console.log("Element Not Found", refValue);
+    }
+
+    insertBefore(refValue, insertValue) {
+        let current = this.tail;
+        while (current != null && current.value != refValue)
+            current = current.prev;
+        if (current != null) {
+            const spot = new Node(insertValue);
+            spot.prev = current.prev;
+            spot.next = current;
+
+            if (current.prev != null)
+                current.prev.next = spot;
+            else
+                this.head = spot;
+            current.prev = spot;
+        } else
+            console.log("Element Not Found", refValue);
+    }
+
+    removeValue(value) {
+        let current = this.head;
+        while (current != null && current.value != value)
+            current = current.next;
+
+        if (current != null) {
+            console.log('removing : ', value);
+            if (current.next != null) {
+                current.next.prev = current.prev;
+            } else {
+                this.tail = this.tail.prev;
+            }
+            if (current.prev != null) {
+                current.prev.next = current.next;
+            } else {
+                this.head = this.head.next;
+            }
+            current.next = null;
+            current.prev = null;
+        } else
+            console.log("Element Not Found", value);
+    }
 }
 
 const ll = new LinkedList();
 ll.add(1);
-ll.add(10);
-ll.add(100);
+ll.add(3);
+console.log('insert 4');
+ll.insertAfter(3, 4);
+ll.printForwards();
+ll.add(5);
+ll.add(7);
 
+console.log('insert 6');
+ll.insertBefore(7, 6);
+
+ll.printForwards();
+ll.printBackwards();
+
+ll.removeValue(3);
+ll.printForwards();
+ll.printBackwards();
+
+ll.removeValue(1);
+ll.printForwards();
+ll.printBackwards();
+
+ll.removeValue(5);
+ll.printForwards();
+ll.printBackwards();
+
+ll.removeValue(7);
 ll.printForwards();
 ll.printBackwards();
