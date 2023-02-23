@@ -103,6 +103,8 @@ class LinkedList {
 
 const ll = new LinkedList();
 ll.add(1);
+console.log('insert 2');
+ll.insertAfter(1,2);
 ll.add(3);
 console.log('insert 4');
 ll.insertAfter(3, 4);
@@ -112,6 +114,8 @@ ll.add(7);
 
 console.log('insert 6');
 ll.insertBefore(7, 6);
+ll.insertAfter(7,8); // tail testing
+ll.insertBefore(1,0); // head testing
 
 ll.printForwards();
 ll.printBackwards();
