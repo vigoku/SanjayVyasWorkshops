@@ -7,12 +7,14 @@ class Node {
 }
 
 class SentinelList {
-    constructor() {
+    constructor(...values) {
         this.head = new Node();
         this.tail = new Node();
 
         this.head.next = this.tail;
         this.tail.prev = this.head;
+
+        this.addToBack(...values);
     }
 
     add(value) {
@@ -62,29 +64,35 @@ class SentinelList {
         this.addRelative(current.prev, spot, current);
     }
 
-    addToFront(value){
-        let spot = new Node(value);
+    addToFront(...values) {
+        values.forEach(value => {
+            let spot = new Node(value);
 
-        spot.next = this.head.next;
-        spot.prev = this.head;
-        
-        spot.prev.next = spot;
-        spot.next.prev = spot;
+            spot.next = this.head.next;
+            spot.prev = this.head;
+
+            spot.prev.next = spot;
+            spot.next.prev = spot;
+        });
     }
 
-    addToBack(value){
-        let spot = new Node(value);
-        spot.next = this.tail;
-        spot.prev = this.tail.prev;
+    addToBack(...values) {
+        values.forEach(item => {
+            let spot = new Node(item);
+            spot.next = this.tail;
+            spot.prev = this.tail.prev;
 
-        spot.next.prev = spot;
-        spot.prev.next = spot;
+            spot.next.prev = spot;
+            spot.prev.next = spot;
+        });
     }
 
-    delete(value) {
-        let current = this.findValue(value);
-        current.prev.next = current.next;
-        current.next.prev = current.prev;
+    delete(...values) {
+        values.forEach(value => {
+            let current = this.findValue(value);
+            current.prev.next = current.next;
+            current.next.prev = current.prev;
+        });
     }
 
     findValue(value) {
@@ -93,76 +101,80 @@ class SentinelList {
             if (value == current.value) {
                 return current;
             }
-            current=current.next;
+            current = current.next;
         }
         return null;
     }
-    removeAllOccurrences(value){
-        while (null != this.findValue(value)){
-            this.delete(value);
-        }
+    removeAllOccurrences(...values) {
+        values.forEach(value => {
+            while (null != this.findValue(value)) {
+                this.delete(value);
+            }
+        });
     }
-    removeNthOccurance(value, occurrence){
+    removeNthOccurance(value, occurrence) {
         let count = 0;
-        while (null != this.findValue(value)){
+        while (null != this.findValue(value)) {
             count++
-            if (occurrence == count){
+            if (occurrence == count) {
                 this.delete(value);
                 return;
             }
         }
 
     }
-    removeFromBack(value){
-        let current = this.tail.prev;
-        while (current != head){
-            if (current.value == value){
-                current.prev.next = current.next;
-                current.next.prev = current.prev;
-                return;
+    removeFromBack(...values) {
+        values.forEach(value => {
+            let current = this.tail.prev;
+            while (current != head) {
+                if (current.value == value) {
+                    current.prev.next = current.next;
+                    current.next.prev = current.prev;
+                    return;
+                }
+                current = current.prev;
             }
-            current = current.prev;
-        }
+        });
     }
 }
 
-sl = new SentinelList()
+sl = new SentinelList(1, 2, 3, 4, 5)
 sl.printForwards();
 sl.printBackwards();
-sl.add(0);
+// sl.add(0);
 
-sl.printForwards();
-sl.printBackwards();
+// sl.printForwards();
+// sl.printBackwards();
 
-sl.add(1);
+// sl.add(1);
 
-sl.printForwards();
-sl.printBackwards();
+// sl.printForwards();
+// sl.printBackwards();
 
-sl.addAfter(0, 0.5);
-sl.printForwards();
-sl.printBackwards();
+// sl.addAfter(0, 0.5);
+// sl.printForwards();
+// sl.printBackwards();
 
-sl.addBefore(1, 0.75);
-sl.printForwards();
-sl.printBackwards();
+// sl.addBefore(1, 0.75);
+// sl.printForwards();
+// sl.printBackwards();
 
-sl.addAfter(0.75, 2);
-sl.printForwards();
-sl.printBackwards();
+// sl.addAfter(0.75, 2);
+// sl.printForwards();
+// sl.printBackwards();
 
-sl.delete(2);
-sl.printForwards();
-sl.printBackwards();
+// sl.delete(2);
+// sl.printForwards();
+// sl.printBackwards();
 
-sl.delete(0);
-sl.delete(1);
-sl.printForwards();
-sl.printBackwards();
+// sl.delete(0);
+// sl.delete(1);
+// sl.printForwards();
+// sl.printBackwards();
 
-sl.addToFront(0.25);
-sl.addToFront(0);
-sl.addToBack(1);
-sl.printForwards();
-sl.printBackwards();
+// sl.addToFront(0.25);
+// sl.addToFront(0);
+// sl.addToBack(1);
+// sl.printForwards();
+// sl.printBackwards();
 
