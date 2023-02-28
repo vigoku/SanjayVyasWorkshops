@@ -1,5 +1,5 @@
 import TodoComponent from './TodoComponent.js';
-import TodoLocalService from './TodoLocalService.js';
+import TodoRemoteService from './TodoRemoteService.js';
 document.addEventListener("DOMContentLoaded", () => {
-    new TodoComponent(new TodoLocalService());
+    new TodoComponent(new TodoRemoteService());
 });

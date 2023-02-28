@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test API</title>
+    <script>
+        function handleResponse(event){
+            if (event.target.readyState == XMLHttpRequest.DONE){
+                console.log("Data recieved from Server");
+                console.log(event.target.response);
+            }
+        }
+        function makeAPICall(){
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = handleResponse;
+            xhr.open ("GET", "https://reqres.in/api/users/1");
+
+            xhr.send();
+        }
+
+        function makeSyncAPICall(){
+            const xhr = new XMLHttpRequest();
+            xhr.open ("GET", "https://reqres.in/api/users/1", true);
+            
+            xhr.send();
+
+            console.log(xhr.response);
+        }
+
+        function fetchAPICall(){
+            fetch("https://reqres.in/api/users/1")
+                .then(result => result.text())
+                .then(text => console.log(text));
+        }
+
+        async function fetchAsyncAPICall(){
+            console.log(await (await(fetch("http://localhost:10000/"))).text());
+        }
+    </script>
+</head>
+<body>
+    <button onclick="makeSyncAPICall();">Syc AJAX Call</button>
+    <button onclick="makeAPICall();">AJAX Call</button>
+    <button onclick="fetchAPICall();">Fetch call </button>
+    <button onclick="fetchAsyncAPICall();">Async Fetch call </button>
+</body>
+</html>

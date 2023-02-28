@@ -2,7 +2,9 @@ import React from "react"
 import ReactDOM from "react-dom/client"
 import PropTypes from "prop-types";
 import "./style.css"
+import App from "./App"
 
+//~% Class style component
 class Person extends React.Component{
     static propTypes = {
         id :  PropTypes.number,
@@ -29,6 +31,12 @@ class Person2 extends React.Component{
         return (<h1 style={{backgroundColor:"red", color:"white"}}> Person2 [{this.props.student.id}, {this.props.student.name}] say hello</h1>)
     }
 }
+//~! Normal function component
+function Person3(props){
+    return <h1>Function react {props.id} / {props.name}</h1>;
+}
+//~# Arrow function component
+const Person4 = props => <h1 style={{backgroundColor:"green", color:"red"}}>Arrow function {props.id} {props.name}</h1>
 
 class Aray extends React.Component{
     constructor(props){
@@ -38,8 +46,8 @@ class Aray extends React.Component{
     render() {
         let fragment = "";
         this.props.array.forEach(element => {
-            fragment = fragment.concat(<><h1>{element}</h1><br></br></>)
-            console.log(fragment)
+            fragment = fragment.concat(<><h1>{element}</h1><br></br></>);
+            console.log(fragment.toString());
         });
 
         return fragment;
@@ -66,8 +74,13 @@ root.render(<React.Fragment>
 
 let student={id:1234, name:"Phantom"};
 //Component 
-root.render(<>
-<Person id={"1234"} name={"Jornad Walkeshwar"} obj={{country:"IN"}}/>
-<Person2 student={{id:1234, name:"Phantom"}}/>
-<Aray array={[1,2,3,4,5,6]}></Aray>
-</>);
+// root.render(<>
+// <Person id={1234} name={"Jornad Walkeshwar"} obj={{country:"IN"}}/>
+// <Person2 student={{id:1234, name:"Phantom"}}/>
+// <Aray array={[1,2,3,4,5,6]}></Aray>
+
+// <Person3 id={1} name={"functional React"}></Person3>
+// <Person4 id={4} name={"Arrow root powder"}/>
+// </>);
+
+root.render(<App/>)

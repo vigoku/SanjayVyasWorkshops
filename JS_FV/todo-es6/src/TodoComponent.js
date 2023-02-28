@@ -3,11 +3,12 @@ export default class TodoComponent {
     constructor(service) {
         this.service = service;
         this.createView();
+        this.initView();
 
-        this.service.getAllTodos()
-        .forEach(todo => {
-            this.renderTodo(todo);
-        });
+        // this.service.getAllTodos()
+        // .forEach(todo => {
+        //     this.renderTodo(todo);
+        // });
 
         const addButton = document.querySelector("#add-todo-button");
         addButton.addEventListener("click", () => {
@@ -20,6 +21,11 @@ export default class TodoComponent {
             // sessionStorage.setItem("todo", this.todoList);
             //localStorage.setItem("todo", this.todoList);
         });
+    }
+
+    async initView(){
+        const todos = await this.service.getAllTodos();
+        todos.forEach(todo=>this.renderTodo(todo));
     }
     createView() {
         const mainTemplate = `        <H3>Welcome to Todo</H3>
