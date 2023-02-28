@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Customer from './Customer';
+import Person from './Person.jsx';
 const customer = {
   id:1,
   name:"xyz",
@@ -15,10 +16,12 @@ root.render(
   // <React.StrictMode>
   //   <App />
   // </React.StrictMode>
-  <>
-  <App id={1234} name={"React Vinayak"}/>
-  <Customer cust={customer}/>
-  </>
+  // <>
+  // <App id={1234} name={"React Vinayak"}/>
+  // <Customer cust={customer}/>
+  // </>
+
+  <Person id={1234} name={"Test project"}></Person>
 );
 
 // If you want to start measuring performance in your app, pass a function
